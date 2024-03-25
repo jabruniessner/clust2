@@ -81,4 +81,5 @@ Remark: For a detailed introduction to gnuplot see [gnuplot website](http://www.
 
 A typical plot from this script looks like this
 
-[plot_new.pdf](https://github.com/jabruniessner/clust2/files/14749653/plot_new.pdf)
+
+![plot_new](https://github.com/jabruniessner/clust2/assets/95258260/73f47ac3-4aa4-40ea-b304-b9ec6b6ee850)
