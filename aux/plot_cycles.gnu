@@ -19,7 +19,7 @@ set xrange [lineno:0]
 set grid
 set title title_name
 set xlabel 'Number of Clusters'
-set ylabel 'Min Distance Between Clusters'
+set ylabel "Min Distance Between Clusters [{A}]"
 set y2label 'Inter-Cluster distance increase from previous %'
 unset key
 set xtics 50
