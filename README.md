@@ -32,9 +32,12 @@ method: The method used for clustering. Currently implemented methods are 'a' av
 
 ncomplexes(optional): The first ncomplexes to be used are found in the complexes file (defaults to all)
 
-The program creates two files. The first is the Treecuting.out file. It contains a list of all complexes and the cluster of the num_of_cluster representation clusters to which it belongs.
+The program creates three files. The first is the Treecuting.out file. It contains a list of all complexes and the cluster of the num_of_cluster representation clusters to which it belongs.
 
-Second there is the cluster_(method)_linkage.out file, where method is any of the following keywords (average, single, maximum, centroid).
+Second, there is the cluster_out.ascii it contains the same header as the complexes file, and the entries of the of the representatives of the clusters. This file can then used to create
+corresponding PDB files, for instance with the script generateFortComplexesPdbs-SDA7.py, which is part of SDA7 (found in the aux directory of SDA). 
+
+Second, there is the cluster_(method)_linkage.out file, where method is any of the following keywords (average, single, maximum, centroid).
 It contains 5 columns. The header is given to be 
 
 ```
