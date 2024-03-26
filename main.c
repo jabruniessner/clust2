@@ -641,6 +641,12 @@ int main(int argc, char* argv[])
 		}
 
 	}
+
+	if(complexes<cluster_num){
+		printf("Error: you chose a larger number of representatives than complexes\n");
+		exit(EXIT_FAILURE);
+	}
+
 	
 	printf("The center of mass of the first protein is: %lf\t%lf\t%lf\n", pdb1_com[0], pdb1_com[1], pdb1_com[2]);
 	printf("The center of mass of the second protein is: %lf\t%lf\t%lf\n", pdb2_com[0], pdb2_com[1], pdb2_com[2]);
