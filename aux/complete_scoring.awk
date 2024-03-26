@@ -30,13 +30,15 @@ NR>2{
 	Max_Distance=$NF;
 	MAX_LINES=NR
 	cluster_num = $1;
-	ClSize[-($2+1)] = ClSize[$3]+ClSize[$4];
+	
+	ClSize[NR]=1;
+	#ClSize[-($2+1)] = ClSize[$3]+ClSize[$4];
 
 
-	if(ClSize[-($2+1)]>max[NR-1])
-		max[NR] = ClSize[-($2+1)];
-	else 
-		max[NR] = max[NR-1];
+	#if(ClSize[-($2+1)]>max[NR-1])
+	#	max[NR] = ClSize[-($2+1)];
+	#else 
+	#	max[NR] = max[NR-1];
 
 
 }
@@ -45,6 +47,21 @@ END{
 	min[MAX_LINES+1]=complex_number;
 	current_min = complex_number;
 	Distance_change= Max_Distance - Distances[3];
+	
+	for(i=3 ; i<=MAX_LINES; i++)
+	{
+		split(lines[i], a);
+		ClSize[-(a[2]+1)]=ClSize[a[3]]+ClSize[a[4]];
+		if(ClSize[-(a[2]+1)]>max[i-1])
+			max[i]=ClSize[-(a[2]+1)];
+		else
+			max[i]=max[i-1];
+
+
+	}
+
+
+
 	#Creating the minimums array
 	for(i=MAX_LINES; i>2; i--)
 	{	
