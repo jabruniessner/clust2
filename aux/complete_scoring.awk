@@ -5,7 +5,7 @@ BEGIN{
 	max[2]=1;
 
 	#Initializing initial values for finding max in each step
-	for(i=0; i<=500; i++)
+	for(i=0; i<=2; i++)
 	{
 		ClSize[i]=1;
 	}
@@ -32,13 +32,6 @@ NR>2{
 	cluster_num = $1;
 	
 	ClSize[NR]=1;
-	#ClSize[-($2+1)] = ClSize[$3]+ClSize[$4];
-
-
-	#if(ClSize[-($2+1)]>max[NR-1])
-	#	max[NR] = ClSize[-($2+1)];
-	#else 
-	#	max[NR] = max[NR-1];
 
 
 }
