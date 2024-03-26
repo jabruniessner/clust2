@@ -820,7 +820,7 @@ int main(int argc, char* argv[])
 	//printing the head lines
 	for(int i=0; i<cluster_num; i++)
 	{	
-		int rep = representatives[i];
+		int rep = cluster[i].Repr-1;
 		fprintf(outfile,"%s", record[rep].line);
 	}
 
