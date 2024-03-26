@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 
 #Performing the initial clustering
@@ -8,4 +8,4 @@
 ../aux/complete_scoring.awk cluster_average_linkage.out > cluster_average_linkage_full_scoring.out
 
 #Plotting the results
-gnuplot -c ../aux/plot_cycles.gnu cluster_average_linkage_full_scoring.out plot.pdf "bnbs docking" 500
+../aux/plot_cycles.gnu cluster_average_linkage_full_scoring.out plot.pdf "bnbs docking" 500

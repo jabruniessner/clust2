@@ -1,3 +1,6 @@
+#!/usr/bin/gnuplot -c
+
+
 #This script takes in three input paramters
 #It can be invoked with the command
 #gnuplot -c script_name filein fileout lineno
@@ -21,7 +24,7 @@ set title title_name
 set xlabel 'Number of Clusters'
 set ylabel "Min Distance Between Clusters [{A}]"
 set y2label 'Inter-Cluster distance increase from previous %'
-unset key
+#unset key
 set xtics 50
 set ytics nomirror
 set y2tics
