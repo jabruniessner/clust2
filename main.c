@@ -93,7 +93,7 @@ Node* hierarchical_single_linkage(int nrows, int ncols, double** data, int** mas
 	FILE* outfile = fopen("cluster_single_linkage.out", "w");
 	for(int i=0; i<ncols; i++) weight[i]=1.0;
 	fprintf(outfile, "\n");
-  	fprintf(outfile,"================ Pairwise single linkage clustering ============\n");
+  	fprintf(outfile,"#================ Pairwise single linkage clustering ============\n");
 	/*Since we have the distance matrix herem we may as well use it. */
 	tree = treecluster(nrows, ncols, data, mask, weight ,0, 'e', 's', 0);
 	/*The distance matrix was modified by treecluster, so we cannot use it any
@@ -106,7 +106,7 @@ Node* hierarchical_single_linkage(int nrows, int ncols, double** data, int** mas
 		free(weight);
 		exit(EXIT_FAILURE);
 	}
-	fprintf(outfile,"Node CycleNo    Item1    Item2   Distance\n");
+	fprintf(outfile,"#Node CycleNo    Item1    Item2   Distance\n");
 	
 	for(int i=0; i<nnodes; i++)
 	{
@@ -128,7 +128,7 @@ Node* hierarchical_maximum_linkage(int nrows, int ncols, double** data, int** ma
 	Node* tree;
 	FILE* outfile = fopen("cluster_maximum_linkage.out", "w");
 	for(int i=0; i< ncols; i++) weight[i] = 1.0;
-  	fprintf(outfile, "================ Pairwise maximum linkage clustering ============\n");
+  	fprintf(outfile, "#================ Pairwise maximum linkage clustering ============\n");
 	tree = treecluster(nrows, ncols, data, mask, weight, 0, 'e', 'm', 0);
   	/* Here, we let treecluster calculate the distance matrix for us. In that
    	* case, the treecluster routine may fail due to insufficient memory to store
@@ -142,7 +142,7 @@ Node* hierarchical_maximum_linkage(int nrows, int ncols, double** data, int** ma
 	  exit(EXIT_FAILURE);
 	}
 
-	fprintf(outfile,"Node CycleNo    Item1    Item2   Distance\n");
+	fprintf(outfile,"#Node CycleNo    Item1    Item2   Distance\n");
         for(int i=0; i<nnodes; i++)
         {
                 fprintf(outfile,"%4d %7d %8d %8d   %7.2lf\n",
@@ -163,7 +163,7 @@ Node* hierarchical_average_linkage(int nrows, int ncols, double** data, int** ma
 	Node* tree;
 	FILE* outfile = fopen("cluster_average_linkage.out", "w");
 	for(int i=0; i< ncols; i++) weight[i]=1.0;
-  	fprintf(outfile, "================ Pairwise average linkage clustering ============\n");
+  	fprintf(outfile, "#================ Pairwise average linkage clustering ============\n");
 	tree = treecluster(nrows, ncols, data, mask, weight, 0, 'e', 'a', 0);
   	/* Here, we let treecluster calculate the distance matrix for us. In that
    	* case, the treecluster routine may fail due to insufficient memory to store
@@ -176,7 +176,7 @@ Node* hierarchical_average_linkage(int nrows, int ncols, double** data, int** ma
 	  exit(EXIT_FAILURE);
 	}
 	
-	fprintf(outfile,"Node CycleNo    Item1    Item2   Distance\n");
+	fprintf(outfile,"#Node CycleNo    Item1    Item2   Distance\n");
         for(int i=0; i<nnodes; i++)
         {
                 fprintf(outfile,"%4d %7d %8d %8d   %7.2lf\n",
@@ -196,7 +196,7 @@ Node* hierarchical_centroid_linkage(int nrows, int ncols, double** data, int** m
 	FILE* outfile = fopen("cluster_centroid_linkage.out", "w");
 	Node* tree;
 	for(int i = 0; i<ncols; i++) weight[i]=1.0;
-  	fprintf(outfile, "================ Pairwise centroid linkage clustering ===========\n");
+  	fprintf(outfile, "#================ Pairwise centroid linkage clustering ===========\n");
   	tree = treecluster(nrows, ncols, data, mask, weight, 0, 'e', 'c', 0); 
 	if(!tree)
 	{ /* Indication that the treecluster routine failed */
@@ -205,7 +205,7 @@ Node* hierarchical_centroid_linkage(int nrows, int ncols, double** data, int** m
 	  exit(EXIT_FAILURE);
 	}
 
-	fprintf(outfile,"Node CycleNo    Item1    Item2   Distance\n");
+	fprintf(outfile,"#Node CycleNo    Item1    Item2   Distance\n");
         for(int i=0; i<nnodes; i++)
         {
                 fprintf(outfile,"%4d %7d %8d %8d   %7.2lf\n",
