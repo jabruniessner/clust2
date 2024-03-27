@@ -1,3 +1,33 @@
+/* The C clustering library.
+ * Copyright (C) 2024 Jakob Niessner.
+ * Contact: jabruniessner@gmail.com
+ *
+ *
+ * This program was written at the Heidelberg Institute for theoretical studies,
+ * Schloß-Wolfsbrunnenweg 35, 69118 Heidelberg, Germany
+ * Under the supervision of Prof. Dr. Rebecca C. Wade
+ * Contact: rebecca.wade@h-its.org
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation with or without modifications and for any purpose and
+ * without fee is hereby granted, provided that any copyright notices
+ * appear in all copies and that both those copyright notices and this
+ * permission notice appear in supporting documentation, and that the
+ * names of the contributors or copyright holders not be used in
+ * advertising or publicity pertaining to distribution of the software
+ * without specific prior permission.
+ *
+ * THE CONTRIBUTORS AND COPYRIGHT HOLDERS OF THIS SOFTWARE DISCLAIM ALL
+ * WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL THE
+ * CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT
+ * OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+ * OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
+ * OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+ * OR PERFORMANCE OF THIS SOFTWARE.
+ *
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -91,11 +121,11 @@ int read_record_from_line(char line[], Record* record, int num_energy_fields)
 	token=strtok(NULL, delimiter);
 	sscanf(token, "%lf", &(record->occurences));
 
-	token=strtok(NULL, delimiter);
-	sscanf(token, "%lf", &(record->AvEnergy));
+	//token=strtok(NULL, delimiter);
+	//sscanf(token, "%lf", &(record->AvEnergy));
 
-	token=strtok(NULL, delimiter);
-	sscanf(token, "%lf", &(record->StdAvEnergy));
+	//token=strtok(NULL, delimiter);
+	//sscanf(token, "%lf", &(record->StdAvEnergy));
 	
 }
 
@@ -255,8 +285,8 @@ void print_record(Record record, int energy_field_num)
 
 	printf("\n");
         printf("Occurences: %lf\n", record.occurences);
-        printf("AvEnergy: %lf\n", record.AvEnergy);
-        printf("StdAvEnergy: %lf\n", record.StdAvEnergy);
+        //printf("AvEnergy: %lf\n", record.AvEnergy);
+        //printf("StdAvEnergy: %lf\n", record.StdAvEnergy);
 	printf("Line:\n");
 	printf("%s", record.line);
 };

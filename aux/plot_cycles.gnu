@@ -25,7 +25,7 @@ set xlabel 'Number of Clusters'
 set ylabel "Min Distance Between Clusters [{A}]"
 set y2label 'Inter-Cluster distance increase from previous %'
 #unset key
-set xtics 50
+set xtics lineno/10
 set ytics nomirror
 set y2tics
 plot filein using 1:5 axes x1y1 with steps lw 2 lt 1 title 'distance',\
