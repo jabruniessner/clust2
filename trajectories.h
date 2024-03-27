@@ -1,4 +1,4 @@
-/* The C clustering library.
+/* The clust2.
  * Copyright (C) 2024 Jakob Niessner.
  * Contact: jabruniessner@gmail.com
  *
