@@ -44,14 +44,15 @@ int get_energy_signature(char* line, char***Energy_fields)
 	int j=0;
 	
 	Energy_fields[0] = malloc(sizeof(char*)*100);
+
+	while(memcmp(token, "TotEn", 5)){
+		token = strtok(NULL, " ");
+	}
+
 	
-	for(int i=0; token != NULL; i++)
+	while( token != NULL)
 	{
-		if(i < 12){
-			token = strtok(NULL, " ");
-			continue;
-		}
-		
+
 		if(!memcmp(token, "Occur", 5))
 		{
 			break;
@@ -63,7 +64,10 @@ int get_energy_signature(char* line, char***Energy_fields)
 		j++;
 
 
+
+
 	}
+
 
 	free(linecp);
 
@@ -148,12 +152,10 @@ int read_trajectory_file(char* filename, char*** head_lines, Record** records, i
 		printf("There is something wrong with your trajectories file.\nThis is not an SDA complexes file.\n");
 	}
 
-	printf("Made it before get_string_signature\n");
-
+	printf("Made it until right before energy_signature function call\n");
 	*num_energy_fields=get_energy_signature(buffer, Energy_fields);
+	printf("The number of energy fields is %i\n", *num_energy_fields);
 
-	printf("Made it until after get_string_signature\n");
-	printf("The value of num_energy_fields %i\n", *num_energy_fields);
 	
 
 	//saving the first head_line

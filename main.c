@@ -571,7 +571,7 @@ void initializing_Cluster(Cluster* cluster, Record* record, int cluster_num, int
 			double* Energies = &(record->energy_fields[0]);
 			
 			for(int i=0; i<num_energy_fields; i++)
-			{
+			{	
 				if(!memcmp(Energy_signature[i], "TotEn", 5))
 					cluster->ReprE = Energies[i];
 				else if (!memcmp(Energy_signature[i], "El", 2))
@@ -652,7 +652,6 @@ int main(int argc, char* argv[])
 	char**head_lines;
 	char** Energy_fields;
 	int complexes = read_trajectory_file(filename, &head_lines, &record, &num_energy_fields, &Energy_fields, pdb1_com, pdb2_com);
-	printf("Managed to read complexes file\n");
 	int complexes_input;
 
 	printf("The number of energy fields is: %i\n", num_energy_fields);
@@ -795,15 +794,14 @@ int main(int argc, char* argv[])
 	Cluster* cluster= malloc(sizeof(Cluster)*cluster_num);	
 	double** representative_data=malloc(sizeof(double*)*cluster_num);
 	for(int i = 0; i<cluster_num; i++)
-	{
+	{	
 		int rep = representatives[i];
 		Record* rep_record=&record[rep];
 		initializing_Cluster(&cluster[i], rep_record, i+1, rep, ClSize[i], ClFSize[i], AvgEnergies[i], StdEnergies[i],
 				RepRMSD[i], CLFRMSD[i], spread[i], stddev[i], max[i], num_energy_fields, Energy_fields);
-		//print_Cluster(cluster);
-		//printf("The ClSize is %li\n", ClSize[i]);
 		representative_data[i] = structures[rep];
 	}
+
 
 	qsort(cluster, cluster_num, sizeof(Cluster), cmp_cluster_sizes);
 
