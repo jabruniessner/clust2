@@ -799,12 +799,12 @@ int main(int argc, char* argv[])
 		Record* rep_record=&record[rep];
 		initializing_Cluster(&cluster[i], rep_record, i+1, rep, ClSize[i], ClFSize[i], AvgEnergies[i], StdEnergies[i],
 				RepRMSD[i], CLFRMSD[i], spread[i], stddev[i], max[i], num_energy_fields, Energy_fields);
-		representative_data[i] = structures[rep];
+		//representative_data[i] = structures[rep];
 	}
-
 
 	qsort(cluster, cluster_num, sizeof(Cluster), cmp_cluster_sizes);
 
+	
 	for(int i=0; i<cluster_num; i++)
 	{	
 		cluster[i].no=i+1;
@@ -814,6 +814,16 @@ int main(int argc, char* argv[])
 	printf("\n");
 	printf("\n");
 	printf("\n");
+
+	
+	
+	//getting the correctly ordered representatives
+	for(int i=0; i<cluster_num; i++)
+	{	
+		int rep = cluster[i].Repr-1;
+		representative_data[i] = structures[rep];
+	}
+
 
 
 	double** matrix = example_distance_bb(cluster_num, 3*PDB.bb_atom_number, representative_data,  mask);
