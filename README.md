@@ -1,13 +1,14 @@
 ### Clust 2: A clustering algorithm for [SDA7](https://mcm.h-its.org/sda/doc/doc_sda7/index.html)
 
-This project was intially written to do complexes clustering for SDA. SDA still contains some dependencies.
-When cloned the prjects complilation is as simple as typing 
+This project was initially written to do complexes clustering for SDA. The program is based on the 
+[C clustering library](http://bonsai.hgc.jp/~mdehoon/software/cluster/software.htm)
+When cloned the project's compilation is as simple as typing.
 
 ```
 make
 ```
 
-into the terminal inside this projects folder. The compilation is currently only setup for the gcc compiler. 
+into the terminal inside this project's folder. The compilation is currently only setup for the gcc compiler. 
 Once the program is built, it consists of three parts: The 
 
 ```
@@ -23,7 +24,7 @@ The input parameters have the following meaning
 
 complexes_file: This file is the complexes file as it is output by the SDA simulation. It needs to be in ASCII format, which 
 is specified [here](https://mcm.h-its.org/sda/doc/doc_sda7/complexes_file.html). In previous versions, the complexes file needed to be brought into a 
-"format suported by the clust program" using the read_record -format option in SDA (for reference: see [here](https://mcm.h-its.org/sda/doc/doc_sda7/tools.html)) 
+"format supported by the clust program" using the read_record -format option in SDA (for reference: see [here](https://mcm.h-its.org/sda/doc/doc_sda7/tools.html)) 
 This step is no longer necessary. The step was originally necessary because the old clust program was written for an older version of SDA.
 
 pdb_file: The pdb file of solute 2 
@@ -34,10 +35,10 @@ ncomplexes(optional): The first ncomplexes to be used are found in the complexes
 
 The program creates three files. The first is the Treecuting.out file. It contains a list of all complexes and the cluster of the num_of_cluster representation clusters to which it belongs.
 
-Second, there is the cluster_out.ascii it contains the same header as the complexes file, and the entries of the of the representatives of the clusters. This file can then used to create
+Second, there is the cluster_out.ascii it contains the same header as the complexes file and the entries of the representatives of the clusters. This file can then be used to create
 corresponding PDB files, for instance with the script generateFortComplexesPdbs-SDA7.py, which is part of SDA7 (found in the aux directory of SDA). 
 
-Second, there is the cluster_(method)_linkage.out file, where method is any of the following keywords (average, single, maximum, centroid).
+Second, there is the cluster_(method)_linkage.out file, where the method is any of the following keywords (average, single, maximum, centroid).
 It contains 5 columns. The header is given to be 
 
 ```
@@ -45,11 +46,11 @@ It contains 5 columns. The header is given to be
 ```
 
 Where Node is the number of clusters after this cycle. CycleNo is the number of the cycle, Item1 and Item2 refer to the clusters merged in this cycle.
-The numbering is for complexes (clusters with a single member complex) {0, ..., ncomplexes-1} and summarized cluster are numbered {-1, ..., -ncomplexes}. The last 
-value is the distance between the two cluster that are merged (which is also the minimal distance between two any two clusters in the previous cycle).
+The numbering is for complexes (clusters with a single member complex) {0, ..., ncomplexes-1} and summarized clusters are numbered {-1, ..., -ncomplexes}. The last 
+value is the distance between the two clusters that are merged (which is also the minimal distance between two any two clusters in the previous cycle).
 
 
-This outputfile can then be used as an input for the script aux/complete_scoring.awk. This is an awk script that extends the output file by 4 columns:
+This output file can then be used as an input for the script aux/complete_scoring.awk. This is an awk script that extends the output file by 4 columns:
 increments, avg. ClSize, max. ClSize and min ClSize. increments is the percentage of the increase in distance between the first cycle and the last cycle in percent. 
 I.e.: Let $d_i$ be the distance in the $i^{th}$ cycle, then the increment is given by
 
