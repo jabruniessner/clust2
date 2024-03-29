@@ -1,7 +1,7 @@
 ### Clust 2: A clustering algorithm for [SDA7](https://mcm.h-its.org/sda/doc/doc_sda7/index.html)
 
 This project was initially written to do complexes clustering for SDA. The program is based on the 
-[C clustering library](http://bonsai.hgc.jp/~mdehoon/software/cluster/software.htm)
+[C clustering library](http://bonsai.hgc.jp/~mdehoon/software/cluster/software.htm).
 When cloned the project's compilation is as simple as typing.
 
 ```
