@@ -250,7 +250,7 @@ Node* hierarchical_centroid_linkage(int nrows, int ncols, double** data, int** m
 
 int* cutting_hierarchical_tree(Node* tree, int nrows, int level)
 {	
-	FILE* outfile = fopen("Treecuting.out", "w");
+	FILE* outfile = fopen("Treecutting.out", "w");
 	int* clusterid = malloc(nrows*sizeof(int));
 	int ok = cuttree(nrows, tree, level, clusterid);
 	if(!ok)
@@ -258,7 +258,7 @@ int* cutting_hierarchical_tree(Node* tree, int nrows, int level)
 		printf ("cuttree routine failed due to insufficient memory\n");
 		exit(EXIT_FAILURE);
 	}
-	for(int i=0; i<nrows; i++) fprintf(outfile,"Complexe %2d: cluster %2d\n", i, clusterid[i]);
+	for(int i=0; i<nrows; i++) fprintf(outfile,"Complexe %2d : cluster %2d\n", i, clusterid[i]);
 	fprintf(outfile, "\n");
 	fclose(outfile);
 	return clusterid;
@@ -782,13 +782,12 @@ int main(int argc, char* argv[])
 	get_stds_of_clusters(cluster_num, complexes, num_energy_fields, clusterid, energy_data, energy_cdata, energy_std_cdata);
 
 
+	
 	printf("%i\t%i\t%i\t%i\t%i\n", representatives[0]+1, representatives[1]+1, representatives[2]+1, representatives[3]+1, representatives[4]+1);
 	printf("\n");
 	printf("\n");
 	printf("\n");
 
-	print_table_header();
-	
 
 	//Computing the distance matrix for the representatives and initializing the cluster structs
 	Cluster* cluster= malloc(sizeof(Cluster)*cluster_num);	
@@ -803,6 +802,8 @@ int main(int argc, char* argv[])
 	}
 
 	qsort(cluster, cluster_num, sizeof(Cluster), cmp_cluster_sizes);
+
+	print_table_header();
 
 	
 	for(int i=0; i<cluster_num; i++)
