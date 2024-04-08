@@ -70,6 +70,15 @@ The output can be saved to a file with the `>` in bash. I.e.
 path/to/aux/complete_scoring.awk path/to/clustering_(method)_linkage.out > path/to/output_file.out
 ```
 
+With this data, it is possible to write the members of the clusters to files. This can be done with the 
+
+``` 
+path/to/aux/print_cluster_members.py
+```
+
+Beware that this script is dependent on numpy. The latest version, with which it has been tested was numpy 1.24.3<=version<=1.26.4.
+Its documentation can be found by either callig the script without arguments or by calling the script with the "--help" or "-h" flag in the argument.
+
 In the last step, it is possible to plot the increments and the distances against the number of clusters. This can quickly be done with gnuplot and the aux/plot_cycles.gnu script.
 It can be invoked with the command 
 
@@ -89,4 +98,3 @@ A typical plot from this script looks like this
 ![plot](https://github.com/jabruniessner/clust2/assets/95258260/30c8e879-83ca-47b7-a544-685eacf2cca2)
 
 An example can be found in the example directory
-
