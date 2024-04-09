@@ -29,13 +29,22 @@
 
 CC=gcc -g
 
+all: clust cut
 
+cut: cut.o pdb_structure.o math_func.o trajectories.o cluster.o shared_functions.o
+	$(CC) cut.o pdb_structure.o math_func.o trajectories.o cluster.o shared_functions.o -o cut -lm
 
-clust: main.o pdb_structure.o math_func.o trajectories.o cluster.o
-	$(CC) main.o pdb_structure.o math_func.o trajectories.o cluster.o -o clust -lm
+clust: main.o pdb_structure.o math_func.o trajectories.o cluster.o shared_functions.o
+	$(CC) main.o pdb_structure.o math_func.o trajectories.o cluster.o shared_functions.o -o clust -lm
+
+cut.o: cut.c
+	$(CC) -c cut.c -o cut.o
 
 main.o: main.c
 	$(CC) -c main.c -o main.o
+
+shared_functions.o: shared_functions.c
+	$(CC) -c shared_functions.c -o shared_functions.o
 
 pdb_structure.o: pdb_structure.c
 	$(CC) -c pdb_structure.c -o pdb_structure.o

@@ -1,5 +1,5 @@
 #!/bin/python3
-import sys; sys.path.append("/hits/basement/mcm/niessnjb/sdas/sda-master/auxi")
+import sys; sys.path.append("/home/jakob/Dokumente/SDA/sda_flex-7.3.5/auxi")
 import os
 from fort55_lib_SDA7 import *
 import numpy as np
@@ -130,11 +130,11 @@ def main(complexes_file, pdb_file, stats_file, treecutting_file):
 
 
     #Reading the representatives from the stats.out file
-    stats = open(stats_file).readlines()[8]
+    stats = open(stats_file).readlines()[7]
     representatives = np.array(stats.split()).astype(int)-1
 
     #Reading the dictionary representative cluster num
-    lines_stats = open(stats_file).readlines()[13:]
+    lines_stats = open(stats_file).readlines()[12:]
     
     i=0
     rep_clustno = {}
