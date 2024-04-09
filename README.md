@@ -33,12 +33,7 @@ method: The method used for clustering. Currently implemented methods are 'a' av
 
 ncomplexes(optional): The first ncomplexes to be used are found in the complexes file (defaults to all)
 
-The program creates three files. The first is the Treecuting.out file. It contains a list of all complexes and the cluster of the num_of_cluster representation clusters to which it belongs.
-
-Second, there is the cluster_out.ascii it contains the same header as the complexes file and the entries of the representatives of the clusters. This file can then be used to create
-corresponding PDB files, for instance with the script generateFortComplexesPdbs-SDA7.py, which is part of SDA7 (found in the aux directory of SDA). 
-
-Second, there is the cluster_(method)_linkage.out file, where the method is any of the following keywords (average, single, maximum, centroid).
+The program creates the cluster_(method)_linkage.out file, where the method is any of the following keywords (average, single, maximum, centroid).
 It contains 5 columns. The header is given to be 
 
 ```
@@ -47,7 +42,7 @@ It contains 5 columns. The header is given to be
 
 Where Node is the number of clusters after this cycle. CycleNo is the number of the cycle, Item1 and Item2 refer to the clusters merged in this cycle.
 The numbering is for complexes (clusters with a single member complex) {0, ..., ncomplexes-1} and summarized clusters are numbered {-1, ..., -ncomplexes}. The last 
-value is the distance between the two clusters that are merged (which is also the minimal distance between two any two clusters in the previous cycle).
+value is the distance between the two clusters that are merged (which is also the minimal distance between any two clusters in the previous cycle).
 
 
 This output file can then be used as an input for the script aux/complete_scoring.awk. This is an awk script that extends the output file by 4 columns:
@@ -55,7 +50,6 @@ increments, avg. ClSize, max. ClSize and min ClSize. increments is the percentag
 I.e.: Let $d_i$ be the distance in the $i^{th}$ cycle, then the increment is given by
 
 $$increment_i = \frac{d_i-d_{i-1}}{d_n-d_1}.$$
-
 
 avg. ClSize is the average size of clusters in that cycle, which is given by the number of complexes divided by the number of clusters in that cycle.
 max. ClSize is the maximum size of all clusters and min. ClSize is the minimum size of all clusters. The header after this step looks like this
@@ -70,13 +64,7 @@ The output can be saved to a file with the `>` in bash. I.e.
 path/to/aux/complete_scoring.awk path/to/clustering_(method)_linkage.out > path/to/output_file.out
 ```
 
-With this data, it is possible to write the members of the clusters to files. This can be done with the 
-
-``` 
-path/to/aux/print_cluster_members.py
-```
-
-Beware that this script is dependent on numpy. The latest version, with which it has been tested was numpy 1.24.3<=version<=1.26.4.
+Beware that this script is dependent on numpy. Versions, with which it has been tested are numpy 1.24.3<=version<=1.26.4.
 Its documentation can be found by either callig the script without arguments or by calling the script with the "--help" or "-h" flag in the argument.
 
 In the last step, it is possible to plot the increments and the distances against the number of clusters. This can quickly be done with gnuplot and the aux/plot_cycles.gnu script.
@@ -97,4 +85,27 @@ A typical plot from this script looks like this
 
 ![plot](https://github.com/jabruniessner/clust2/assets/95258260/30c8e879-83ca-47b7-a544-685eacf2cca2)
 
+
+Based on this information it is possibel to choose how many clusters can be considered distinct. Based on this, it is typical to perform a tree cut.
+The cut prgram can be invoked via
+
+```
+path/to/cut cluster_(method)_linkage.out complexes_file pdb_file num_of_cluster 
+```
+
+This program has three output files.
+
+The first is the Treecuting.out file. It contains a list of all complexes and the cluster of the num_of_cluster representation clusters to which it belongs.
+
+Second, there is the cluster_out.ascii it contains the same header as the complexes file and the entries of the representatives of the clusters. This file can then be used to create
+corresponding PDB files, for instance with the script generateFortComplexesPdbs-SDA7.py, which is part of the SDA7 package (found in the aux directory of SDA). 
+
+With this data, it is possible to write the members of the clusters to files. This can be done with the 
+
+``` 
+path/to/aux/print_cluster_members.py
+```
+
 An example can be found in the example directory
+
+Have fun using!
