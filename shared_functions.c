@@ -51,6 +51,16 @@ int cmp_cluster_sizes(const void* clust1, const void* clust2)
 	return (ClFSize1 < ClFSize2) - (ClFSize1 > ClFSize2);
 }
 
+int cmp_cluster_sizes_old(const void* clust1, const void* clust2)
+{
+	Cluster* Cluster1 = (Cluster*) clust1;
+	Cluster* Cluster2 = (Cluster*) clust2;
+	long ClSize1 = Cluster1->ClSize;
+	long ClSize2 = Cluster2->ClSize;
+
+	return (ClSize1 < ClSize2) - (ClSize1 > ClSize2);
+}
+
 
 
 double** example_distance_bb(int nrows, int ncols, double** data, int** mask)

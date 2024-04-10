@@ -53,6 +53,8 @@ typedef struct{
 
 int cmp_cluster_sizes(const void* clust1, const void* clust2);
 
+int cmp_cluster_sizes_old(const void* clust1, const void* clust2);
+
 double** example_distance_bb(int nrows, int ncols, double** data, int** mask);
 
 Node* hierarchical_single_linkage(int nrows, int ncols, double** data, int** mask);

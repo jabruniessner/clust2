@@ -143,6 +143,17 @@ Node* read_tree_file(char* filename, int* node_number)
 int main(int argc, char* argv[])
 {	
 
+	int old=0;
+
+	if (argc >= 2 && !strcmp(argv[1], "-old"))
+	{
+		old=1;
+		printf("Using -old flag\n");
+		printf("Ordering by ClSize instead of ClFSize");
+		argv++;
+		argc--;
+	}
+
 	if (argc < 5 || !strcmp(argv[1], "-h") || !strcmp(argv[1], "--help"))
 	{
 		printf("Usage:\n");
@@ -161,6 +172,8 @@ int main(int argc, char* argv[])
 		printf("\n");
 		exit(EXIT_FAILURE);
 	}
+
+
       	printf("The number of input arguments is %i\n", argc);
 	int cluster_num;
 	sscanf(argv[4], "%i", &cluster_num);
@@ -278,7 +291,14 @@ int main(int argc, char* argv[])
 		//representative_data[i] = structures[rep];
 	}
 
-	qsort(cluster, cluster_num, sizeof(Cluster), cmp_cluster_sizes);
+	if(old==1)
+	{
+		qsort(cluster, cluster_num, sizeof(Cluster), cmp_cluster_sizes_old);
+	}
+	else
+	{
+		qsort(cluster, cluster_num, sizeof(Cluster), cmp_cluster_sizes);
+	}
 
 	print_table_header();
 
