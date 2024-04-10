@@ -90,15 +90,17 @@ Based on this information it is possibel to choose how many clusters can be cons
 The cut prgram can be invoked via
 
 ```
-path/to/cut cluster_(method)_linkage.out complexes_file pdb_file num_of_cluster 
+path/to/cut [-old] cluster_(method)_linkage.out complexes_file pdb_file num_of_cluster 
 ```
-
 This program has three output files.
 
 The first is the Treecuting.out file. It contains a list of all complexes and the cluster of the num_of_cluster representation clusters to which it belongs.
 
 Second, there is the cluster_out.ascii it contains the same header as the complexes file and the entries of the representatives of the clusters. This file can then be used to create
 corresponding PDB files, for instance with the script generateFortComplexesPdbs-SDA7.py, which is part of the SDA7 package (found in the aux directory of SDA). 
+
+The [] around -old indicate that this flag is optional. If the -old option is specified the clusters in are ordered by ClSize, otherwise they are ordered by ClFSize. 
+Ordering them by ClSize is an unadvisable thing to do, but was added for backwards compatibility.
 
 With this data, it is possible to write the members of the clusters to files. This can be done with the 
 
